@@ -1,6 +1,7 @@
 import React from 'react';
 import {Button, Container, Form, Label} from 'native-base';
 import {
+  Alert,
   Keyboard,
   StyleSheet,
   Text,
@@ -23,7 +24,7 @@ function Welcome({navigation}) {
         navigation.navigate('Login');
       })
       .catch(function(error) {
-        alert(error.message);
+        Alert.alert('Error', error.message);
       });
   };
 

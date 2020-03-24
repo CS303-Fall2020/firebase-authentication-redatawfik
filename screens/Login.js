@@ -13,6 +13,7 @@ import {
   Text,
   Keyboard,
   TouchableWithoutFeedback,
+  Alert,
 } from 'react-native';
 
 import firebase from 'firebase';
@@ -50,7 +51,7 @@ function Login({navigation}) {
       })
       .catch(function(error) {
         setLoading(false);
-        alert(error.message);
+        Alert.alert('Error', error.message);
       });
   };
 
@@ -102,7 +103,7 @@ function Login({navigation}) {
             style={{marginTop: 20}}
             full
             rounded
-            Warning
+            warning
             onPress={forgetPassword}>
             <Text style={{color: 'white'}}>Forget Password</Text>
           </Button>

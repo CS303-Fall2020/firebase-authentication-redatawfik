@@ -9,6 +9,7 @@ import {
   Spinner,
 } from 'native-base';
 import {
+  Alert,
   Keyboard,
   StyleSheet,
   Text,
@@ -31,7 +32,7 @@ function SignUp({navigation}) {
 
   const signUpUser = () => {
     if (password !== confirmPassword) {
-      alert('Passwords do not match');
+      Alert.alert('Error', 'Passwords do not match');
       return;
     }
 
@@ -46,7 +47,7 @@ function SignUp({navigation}) {
       })
       .catch(function(error) {
         setLoading(false);
-        alert(error.message);
+        Alert.alert('Error', error.message);
       });
   };
 

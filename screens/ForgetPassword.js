@@ -9,6 +9,7 @@ import {
   Spinner,
 } from 'native-base';
 import {
+  Alert,
   Keyboard,
   StyleSheet,
   Text,
@@ -20,6 +21,7 @@ import firebase from 'firebase';
 function ForgetPassword({navigation}) {
   const [email, setEmail] = useState('');
   const [loading, setLoading] = useState(false);
+  const [sent, setSent] = useState(false);
 
   const clear = () => {
     setEmail('');
@@ -32,13 +34,11 @@ function ForgetPassword({navigation}) {
       .then(function() {
         // Password reset email sent.
         setLoading(false);
-        alert(
-          'An email with password reset instructions has been sent to your email address',
-        );
+        setSent(true);
       })
       .catch(function(error) {
         setLoading(false);
-        alert(error.message);
+        Alert.alert('Error', error.message);
       });
   };
 
@@ -59,6 +59,15 @@ function ForgetPassword({navigation}) {
               onChangeText={e => setEmail(e)}
             />
           </Item>
+
+          {sent ? (
+            <Button bordered danger>
+              <Text>
+                An email with password reset instructions has been sent to your
+                email address
+              </Text>
+            </Button>
+          ) : null}
 
           <Button
             style={{marginTop: 10}}
